@@ -3,6 +3,9 @@
 Aplikasi belajar bahasa Jepang: membaca, menulis, pengucapan (3–5x pengulangan),
 hafalan SRS (FSRS), daily test, dan simulasi ujian JLPT.
 
+📚 **Dokumentasi lengkap & roadmap:** lihat folder [`docs/`](./docs/README.md)
+([PLAN](./docs/PLAN.md) · [ARCHITECTURE](./docs/ARCHITECTURE.md) · [FEATURES](./docs/FEATURES.md) · [TOOLS](./docs/TOOLS.md))
+
 ## Tech Stack
 - **Next.js 16** (App Router, TypeScript, Tailwind CSS 4)
 - **Supabase** — Postgres, Auth, Storage (free tier)
