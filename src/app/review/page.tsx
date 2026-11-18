@@ -1,21 +1,44 @@
 import { Suspense } from "react";
-import Link from "next/link";
+import { connection } from "next/server";
+import { AppShell } from "@/components/layout/AppShell";
+import { requireShellContext } from "@/lib/auth-profile";
+import { logout } from "../login/actions";
 import { getQueue } from "./actions";
 import ReviewSession from "./ReviewSession";
 
 export default function ReviewPage() {
   return (
-    <main className="mx-auto w-full max-w-2xl px-6 py-10">
-      <Link href="/dashboard" className="text-sm text-slate-500 hover:underline">← Dashboard</Link>
-      <h1 className="mt-2 text-2xl font-bold">Review SRS</h1>
-      <Suspense fallback={<p className="mt-10 text-center text-slate-500">Menyiapkan kartu...</p>}>
-        <ReviewLoader />
-      </Suspense>
-    </main>
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-[#F8FAFC] text-sm font-medium text-slate-500 dark:bg-[#0B1120] dark:text-slate-400">
+          Menyiapkan antrean review FSRS...
+        </div>
+      }
+    >
+      <ReviewContent />
+    </Suspense>
   );
 }
 
-async function ReviewLoader() {
-  const queue = await getQueue();
-  return <ReviewSession initialQueue={queue} />;
+async function ReviewContent() {
+  await connection();
+  const [{ email, profile, dueCount }, queue] = await Promise.all([
+    requireShellContext(),
+    getQueue(),
+  ]);
+
+  const targetLevel = profile?.target_level ?? "N5";
+  const displayName = profile?.display_name ?? email ?? "Pelajar JLPT";
+
+  return (
+    <AppShell
+      activeTab="hafal"
+      displayName={displayName}
+      targetLevel={targetLevel}
+      dueCount={dueCount}
+      logoutAction={logout}
+    >
+      <ReviewSession initialQueue={queue} />
+    </AppShell>
+  );
 }
