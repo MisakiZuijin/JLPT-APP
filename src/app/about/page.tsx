@@ -14,7 +14,7 @@ import {
 export const metadata: Metadata = {
   title: "Tentang & Atribusi Lisensi — JLPT App",
   description:
-    "Penafian status non-sertifikasi JLPT/JFT-Basic, atribusi lisensi data terbuka (JMdict, KANJIDIC2, KanjiVG, Tatoeba, VOICEVOX), serta arsitektur 0 Token AI per pelajar.",
+    "Penafian status non-sertifikasi JLPT/JFT-Basic serta atribusi lisensi sumber data terbuka (JMdict, KANJIDIC2, KanjiVG, Tatoeba, VOICEVOX).",
 };
 
 const OPEN_DATA_LICENSES = [
@@ -39,7 +39,7 @@ const OPEN_DATA_LICENSES = [
     org: "Kanji Vector Graphics Project",
     license: "CC BY-SA 3.0",
     tone: "primary" as const,
-    usage: "Data vektor jalur SVG urutan goresan Hiragana, Katakana, dan Kanji pada modul menulis.",
+    usage: "Data vektor urutan goresan Hiragana, Katakana, dan Kanji pada modul latihan menulis.",
     url: "https://kanjivg.tagaini.net/",
   },
   {
@@ -51,12 +51,12 @@ const OPEN_DATA_LICENSES = [
     url: "https://tatoeba.org/",
   },
   {
-    name: "VOICEVOX / Web Speech API",
-    org: "Audio Pengucapan & Sintesis Suara",
+    name: "VOICEVOX / Audio Browser",
+    org: "Sintesis Suara Pengucapan Jepang",
     license: "Atribusi Suara",
     tone: "warning" as const,
     usage:
-      "Audio pengucapan Web Speech API native browser (ja-JP) & dukungan opsional audio pra-generate VOICEVOX sesuai kredit karakter suara.",
+      "Audio pengucapan bahasa Jepang langsung dari perangkat serta dukungan opsional audio VOICEVOX sesuai ketentuan kredit karakter suara.",
     url: "https://voicevox.hiroshiba.jp/",
   },
 ];
@@ -64,7 +64,6 @@ const OPEN_DATA_LICENSES = [
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-canvas text-text-primary">
-      {/* Shared Clean Responsive Top Bar */}
       <header className="sticky top-0 z-20 border-b border-border-default bg-surface/95 backdrop-blur">
         <div className="mx-auto flex max-w-5xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8">
           <Link
@@ -80,7 +79,7 @@ export default function AboutPage() {
               道
             </span>
             <span className="font-heading text-sm font-bold text-text-primary">
-              JLPT App · Tentang &amp; Kepatuhan Lisensi
+              JLPT App · Tentang &amp; Lisensi
             </span>
           </div>
 
@@ -89,22 +88,18 @@ export default function AboutPage() {
       </header>
 
       <main className="mx-auto max-w-5xl space-y-6 px-4 py-6 sm:px-6 lg:space-y-8 lg:px-8 lg:py-10">
-        {/* Heading */}
         <section className="space-y-2">
-          <Badge tone="primary" mono>
-            TRANSPARANSI &amp; KEPATUHAN HAK CIPTA · /about
-          </Badge>
+          <Badge tone="primary">TENTANG &amp; LISENSI DATA TERBUKA</Badge>
           <h1 className="font-heading text-2xl font-bold tracking-tight text-text-primary sm:text-3xl">
-            Tentang JLPT App, Batasan Sertifikasi &amp; Atribusi Data Terbuka
+            Tentang JLPT App, Batasan Sertifikasi &amp; Sumber Data Terbuka
           </h1>
           <p className="max-w-3xl text-sm leading-relaxed text-text-secondary">
             JLPT App dibangun sebagai media latihan mandiri non-komersial untuk pembelajar bahasa
-            Jepang di Indonesia (Tahap Pra-N5 hingga N1) dengan menghormati hak cipta ujian resmi
+            Jepang di Indonesia (tingkat pemula hingga N1) dengan menghormati hak cipta ujian resmi
             dan seluruh lisensi sumber data terbuka.
           </p>
         </section>
 
-        {/* Non-Certification Disclaimer Card */}
         <section
           aria-labelledby="non-cert-title"
           className="rounded-2xl border border-brand-accent/45 bg-brand-accent-soft p-5 sm:p-6"
@@ -121,16 +116,16 @@ export default function AboutPage() {
                 PENAFIAN RESMI · BUKAN LEMBAGA PENERBIT SERTIFIKAT JLPT / JFT-BASIC
               </h2>
               <p className="text-xs leading-relaxed text-brand-accent-text/95 sm:text-sm">
-                JLPT App adalah platform latihan kesiapan mandiri (<em>mock readiness</em>) dan{" "}
+                JLPT App adalah platform latihan kesiapan mandiri dan{" "}
                 <strong>tidak berafiliasi</strong> dengan Japan Foundation, Japan Educational
-                Exchanges and Services (JEES), maupun penyelenggara resmi JFT-Basic. Kelulusan unit,
+                Exchanges and Services (JEES), maupun penyelenggara resmi JFT-Basic. Kelulusan bab,
                 skor tes harian, dan hasil simulasi ujian di aplikasi ini{" "}
                 <strong>bukan sertifikat resmi</strong>.
               </p>
               <p className="text-xs leading-relaxed text-brand-accent-text/90">
-                Seluruh soal latihan, teks bacaan, dan dialog Kaiwa disusun 100% orisinal tanpa
-                menyalin soal resmi ujian maupun buku cetak berhak cipta. Informasi resmi jadwal,
-                durasi, dan ambang kelulusan ujian selalu merujuk{" "}
+                Seluruh soal latihan, teks bacaan, dan dialog disusun secara orisinal tanpa menyalin
+                soal resmi ujian maupun buku cetak berhak cipta. Informasi resmi jadwal, durasi, dan
+                ambang kelulusan ujian selalu merujuk{" "}
                 <a
                   href="https://www.jlpt.jp/"
                   target="_blank"
@@ -146,11 +141,10 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Open Data Attribution List (Desktop Rows / Mobile Stacked Cards) */}
         <section className="rounded-3xl border border-border-default bg-surface p-5 sm:p-7">
           <div className="space-y-1">
             <p className="font-mono text-[11px] font-bold tracking-wider text-brand-primary uppercase">
-              ATRIBUSI SUMBER DATA TERBUKA &amp; LISENSI RESMI (5 SUMBER)
+              ATRIBUSI SUMBER DATA TERBUKA &amp; LISENSI RESMI
             </p>
             <h2 className="font-heading text-lg font-bold text-text-primary sm:text-xl">
               Sumber Data Kamus, Kanji, Urutan Goresan &amp; Korpus Kalimat
@@ -192,7 +186,6 @@ export default function AboutPage() {
           </div>
         </section>
 
-        {/* Zero Token Architecture Banner */}
         <section className="flex flex-col justify-between gap-4 rounded-2xl border border-brand-primary/30 bg-brand-primary-soft p-5 sm:flex-row sm:items-center sm:px-6">
           <div className="flex items-start gap-3">
             <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-primary text-brand-primary-fg">
@@ -200,12 +193,11 @@ export default function AboutPage() {
             </span>
             <div className="space-y-1">
               <p className="font-heading text-sm font-bold text-brand-primary">
-                Arsitektur Hemat Token: 0 Token AI per Pelajar
+                Akses Belajar Gratis Tanpa Batas Latihan
               </p>
               <p className="text-xs leading-relaxed text-text-secondary">
-                Seluruh latihan harian, penempatan awal, FSRS, dan simulasi ujian berjalan dari bank
-                data lokal dan database Supabase yang dikurasi Admin (/admin). Pelajar tidak pernah
-                terkena batas kuota API AI.
+                Seluruh latihan harian, kartu hafalan, latihan menulis, pengucapan, dan simulasi
+                ujian dapat diakses gratis kapan saja untuk membantu persiapan belajar mandirimu.
               </p>
             </div>
           </div>

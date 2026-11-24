@@ -20,10 +20,10 @@ import {
 } from "./actions";
 
 const ONBOARDING_HIGHLIGHTS = [
-  "Verifikasi email aman lintas perangkat (/auth/confirm)",
-  "Wizard Onboarding 4 Langkah & Tes Penempatan 15 Soal (0 token AI)",
-  "Penyesuaian otomatis Romaji Weaning & Smart Furigana sesuai level",
-  "Kokpit Misi Harian 4 Langkah + Hafalan FSRS 2-Tahap terarah",
+  "Verifikasi email cepat dan aman dari perangkat mana saja",
+  "Penentuan level awal otomatis agar materi sesuai kemampuanmu",
+  "Bantuan cara baca (Romaji & Furigana) yang menyesuaikan progres",
+  "Misi belajar harian terarah, kartu hafalan pintar, dan simulasi JLPT",
 ];
 
 function AuthCard() {
@@ -60,7 +60,7 @@ function AuthCard() {
 
   return (
     <div className="mx-auto grid w-full max-w-5xl items-center gap-8 lg:grid-cols-12">
-      {/* Desktop Left Narrative Panel (Ref: FigCraft D1.1 — hidden on Mobile so form stays above the fold) */}
+      {/* Panel kiri khusus Desktop */}
       <aside className="hidden flex-col justify-between rounded-3xl bg-[#0F766E] p-8 text-white shadow-sm lg:col-span-6 lg:flex lg:min-h-[590px] dark:border dark:border-[#2DD4BF]/20 dark:bg-[#122E2C]">
         <div className="space-y-6">
           <div className="flex items-center justify-between">
@@ -70,16 +70,16 @@ function AuthCard() {
               </span>
               <div>
                 <p className="font-heading text-base font-bold leading-none text-white">
-                  JLPT App · Studio
+                  JLPT App
                 </p>
                 <p className="mt-1 font-mono text-[11px] text-[#CCFBF1]">
-                  Kurikulum Formal JF Standard
+                  Kurikulum Bahasa Jepang N5–N1
                 </p>
               </div>
             </Link>
 
             <span className="rounded-full bg-[#115E59] px-3 py-1 font-mono text-[11px] font-bold text-[#CCFBF1] dark:bg-[#0E1418] dark:text-[#2DD4BF]">
-              0 Token / Pelajar
+              100% Gratis
             </span>
           </div>
 
@@ -88,8 +88,8 @@ function AuthCard() {
               Satu Akun, Alur Belajar Terstruktur dari Kana sampai JLPT N1
             </h2>
             <p className="text-sm leading-relaxed text-[#CCFBF1]">
-              Setelah masuk pertama kali, sistem memandu kamu melewati skrining level &amp; kontrak
-              belajar agar materi harian pas dengan ritme belajarmu.
+              Setelah masuk pertama kali, sistem membantu mengatur target belajar dan level awalmu
+              agar latihan harian selalu pas dengan ritmemu.
             </p>
           </div>
 
@@ -112,17 +112,17 @@ function AuthCard() {
               <span>Latihan Mandiri Non-Sertifikasi</span>
             </span>
             <Link href="/about" className="font-bold text-white underline">
-              Lisensi /about →
+              Tentang &amp; Lisensi →
             </Link>
           </div>
           <p className="mt-1.5 leading-relaxed opacity-90">
-            Data kamus &amp; goresan menggunakan lisensi terbuka JMdict, KANJIDIC2, KanjiVG, dan
-            Tatoeba. Akun Admin &amp; Pelajar terisolasi otomatis.
+            Menggunakan data kamus dan urutan goresan terbuka dari JMdict, KANJIDIC2, KanjiVG, dan
+            Tatoeba untuk mendukung belajar mandirimu.
           </p>
         </div>
       </aside>
 
-      {/* Right Auth Card (Desktop) / Full-Focus Card (Mobile Ref: FigCraft M1.1) */}
+      {/* Kartu Login / Daftar */}
       <section className="mx-auto w-full max-w-md space-y-4 lg:col-span-6 lg:max-w-none">
         <div className="flex items-center justify-between">
           <Link
@@ -155,7 +155,6 @@ function AuthCard() {
             </Badge>
           </div>
 
-          {/* Segmented Tabs */}
           <div className="grid grid-cols-2 gap-1.5 rounded-xl border border-border-default bg-subtle p-1">
             <button
               type="button"
@@ -186,14 +185,14 @@ function AuthCard() {
           </h1>
           <p className="mt-1 text-xs leading-relaxed text-text-secondary">
             {mode === "login"
-              ? "Progres hafalan FSRS, unit kurikulum, dan catatan salah tersimpan otomatis."
-              : "Gratis untuk siswa SMK, mahasiswa, persiapan SSW, maupun pemula."}
+              ? "Progres hafalan, materi belajar, dan catatan latihanmu tersimpan otomatis."
+              : "Gratis untuk siswa SMK, mahasiswa, persiapan kerja ke Jepang, maupun pemula."}
           </p>
 
           {needsSetup && (
             <div className="mt-4 rounded-xl border border-brand-accent/40 bg-brand-accent-soft px-3.5 py-2.5 text-xs font-semibold text-brand-accent-text">
-              Pengaturan Supabase (.env.local) belum diisi. Isi URL dan key Supabase terlebih dahulu
-              untuk mengaktifkan login dan database.
+              Layanan akun belum tersedia saat ini. Silakan coba beberapa saat lagi atau hubungi
+              pengelola aplikasi.
             </div>
           )}
 
@@ -336,9 +335,9 @@ function AuthCard() {
         </div>
 
         <p className="text-center text-xs text-text-secondary">
-          Informasi lisensi data terbuka &amp; status non-sertifikasi tersedia di{" "}
+          Informasi lisensi data terbuka &amp; status non-sertifikasi tersedia di halaman{" "}
           <Link href="/about" className="font-bold text-brand-primary hover:underline">
-            Tentang &amp; Lisensi (/about)
+            Tentang &amp; Lisensi
           </Link>
           .
         </p>

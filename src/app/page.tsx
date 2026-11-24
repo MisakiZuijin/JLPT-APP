@@ -17,49 +17,49 @@ import {
 const DESKTOP_PILLARS = [
   {
     eyebrow: "TAHAP 0 · PRA-N5",
-    title: "92 Kana + Dakuon/Youon",
-    desc: "Baca, audio bunyi asli, urutan goresan KanjiVG & kuis gerbang lepas romaji.",
+    title: "92 Kana + Bunyi Khusus",
+    desc: "Baca huruf Hiragana & Katakana, audio penutur asli, latihan goresan, hingga bisa membaca tanpa romaji.",
   },
   {
-    eyebrow: "LESSON & KONJUGASI",
-    title: "Penjelasan Bab & Drill 活用",
-    desc: "Pahami pola kalimat Bahasa Indonesia, perubahan kata kerja & satuan hitung sebelum kuis.",
+    eyebrow: "MATERI & KONJUGASI",
+    title: "Penjelasan Bab & Latihan Pola",
+    desc: "Pahami tata bahasa dalam Bahasa Indonesia, perubahan kata kerja, dan satuan hitung sebelum mengerjakan kuis.",
   },
   {
-    eyebrow: "MIC ADAPTIF & KAIWA",
-    title: "Rekam 5 / 10 / 15 dtk & SSW",
-    desc: "Durasi rekam otomatis sesuai panjang kalimat, roleplay Konbini/Mensetsu & budaya kerja.",
+    eyebrow: "BICARA & PERCAKAPAN",
+    title: "Latihan Ucap & Simulasi Dialog",
+    desc: "Rekam suaramu dengan durasi otomatis sesuai panjang kalimat, latihan percakapan harian, dan etika kerja Jepang.",
   },
   {
-    eyebrow: "EVALUASI & SIMULASI JLPT",
-    title: "Tes Harian & Ujian N5–N1",
-    desc: "Timer resmi per bagian, batas lulus total & per bidang, plus buku kesalahan otomatis.",
+    eyebrow: "EVALUASI & UJIAN",
+    title: "Tes Harian & Simulasi JLPT N5–N1",
+    desc: "Simulasi ujian berwaktu per bagian, penilaian transparan, serta buku catatan kesalahan otomatis.",
   },
 ];
 
 const MOBILE_STEPS = [
   {
     num: "01",
-    title: "Daftar & Tes Penempatan 15 Soal",
-    desc: "Deteksi level otomatis ke Unit Tahap 0–3 tanpa kuota AI.",
+    title: "Daftar & Cek Kemampuan Awal",
+    desc: "Tentukan level awal belajarmu secara otomatis agar materi langsung pas.",
     accent: "primary" as const,
   },
   {
     num: "02",
-    title: "Baca Penjelasan Bab (Lesson View)",
-    desc: "Romaji dimatikan bertahap + Smart Furigana sesuai progres.",
+    title: "Pelajari Penjelasan Tiap Bab",
+    desc: "Pahami pola kalimat dengan bantuan bacaan yang menyesuaikan progresmu.",
     accent: "primary" as const,
   },
   {
     num: "03",
-    title: "Hafalan FSRS 2-Tahap, KanjiVG & Mic 5–15 dtk",
-    desc: "Uji pilihan + jeda 1,5s dan rekam suara adaptif anti-putus.",
+    title: "Hafalan Kartu, Tulis & Latihan Ucap",
+    desc: "Latih ingatan, urutan goresan kanji, dan pengucapan suara secara rutin.",
     accent: "warning" as const,
   },
   {
     num: "04",
-    title: "Tes Harian & Simulasi Ujian JLPT N5–N1",
-    desc: "Soft Gate 70% fleksibel + buku catatan kesalahan otomatis.",
+    title: "Tes Harian & Simulasi Ujian JLPT",
+    desc: "Evaluasi progres tiap hari dan latih kesiapan menghadapi ujian N5–N1.",
     accent: "primary" as const,
   },
 ];
@@ -67,38 +67,38 @@ const MOBILE_STEPS = [
 const CORE_MODULES = [
   {
     tag: "01 · MEMBACA",
-    title: "Bacaan + Smart Furigana",
-    desc: "Teks bertingkat N5–N1 tanpa romaji. Ketuk kata untuk melihat arti kamus & simpan langsung ke antrean FSRS.",
+    title: "Bacaan Bertingkat & Cara Baca",
+    desc: "Teks pendek hingga artikel N5–N1 dengan bantuan furigana pintar. Ketuk kata untuk melihat arti dan simpan ke hafalan.",
     Icon: IconBook,
   },
   {
     tag: "02 · MENULIS",
-    title: "Kanvas Urutan Goresan KanjiVG",
-    desc: "Mode bertahap Lihat Animasi → Jiplak Panduan → Tulis Mandiri dengan validasi arah & urutan garis.",
+    title: "Latihan Tulis Urutan Goresan",
+    desc: "Lihat animasi urutan garis, jiplak langsung di layar, hingga mampu menulis huruf Kana dan Kanji secara mandiri.",
     Icon: IconPen,
   },
   {
-    tag: "03 · STUDIO SUARA",
-    title: "Rekam Suara Adaptif 5 / 10 / 15 dtk",
-    desc: "Dengar contoh penutur Jepang, tirukan 3–5x hingga lulus ≥ 85%, lengkap dengan roleplay Kaiwa & etika kerja.",
+    tag: "03 · PENGUCAPAN",
+    title: "Latihan Bicara & Dialog Nyata",
+    desc: "Dengar contoh penutur Jepang, rekam dan ulangi hingga tepat, dilengkapi skenario percakapan sehari-hari dan dunia kerja.",
     Icon: IconMic,
   },
   {
-    tag: "04 · HAFALAN FSRS",
-    title: "Active Recall 2-Tahap Tervalidasi",
-    desc: "Uji pilihan dengan jeda berpikir 1,5 detik sebelum rating Lupa/Sulit/Bisa/Mudah agar jadwal FSRS akurat.",
+    tag: "04 · HAFALAN PINTAR",
+    title: "Kartu Hafalan Terjadwal Otomatis",
+    desc: "Uji ingatanmu sebelum kartu dijadwalkan ulang secara otomatis tepat sebelum kamu lupa.",
     Icon: IconCards,
   },
   {
     tag: "05 · TES HARIAN",
-    title: "Evaluasi 20 Soal & Dikte Audio",
-    desc: "Gabungan 50% SRS jatuh tempo, 30% materi unit aktif, dan 20% audio mendengarkan (Choukai).",
+    title: "Evaluasi 20 Soal & Mendengarkan",
+    desc: "Gabungan ulasan hafalan lama, materi baru, serta latihan mendengarkan audio setiap hari.",
     Icon: IconCalendar,
   },
   {
     tag: "06 · UJIAN JLPT",
-    title: "Simulasi Resmi Berwaktu N5–N1",
-    desc: "Struktur 3 bagian (Moji-Goi, Bunpou-Dokkai, Choukai) dengan penguncian bagian & skor skala 180.",
+    title: "Simulasi Ujian Berwaktu N5–N1",
+    desc: "Format 3 bagian (Huruf & Kosakata, Tata Bahasa & Bacaan, Mendengarkan) lengkap dengan timer dan pembahasan.",
     Icon: IconAward,
   },
 ];
@@ -113,9 +113,7 @@ const PREVIEW_RATINGS = [
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-canvas text-text-primary">
-      {/* =================================================================
-          DESKTOP STUDIO VIEW (lg+) — Ref: FigCraft D0.1
-         ================================================================= */}
+      {/* DESKTOP VIEW (lg+) */}
       <div className="hidden lg:block">
         <header className="sticky top-0 z-20 border-b border-border-default bg-surface/95 backdrop-blur">
           <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-8 py-4">
@@ -128,20 +126,20 @@ export default function HomePage() {
                   JLPT App
                 </p>
                 <p className="mt-0.5 font-mono text-[10px] font-medium text-brand-primary">
-                  JF Standard · N5–N1
+                  Belajar Jepang N5–N1
                 </p>
               </div>
             </Link>
 
             <nav className="flex items-center gap-6 text-sm font-semibold whitespace-nowrap text-text-secondary">
               <a href="#kurikulum" className="transition hover:text-brand-primary">
-                Alur Kurikulum Formal
+                Alur Belajar
               </a>
               <a href="#modul" className="transition hover:text-brand-primary">
-                Fitur 4-Skill &amp; FSRS
+                Fitur Utama
               </a>
               <Link href="/about" className="transition hover:text-brand-primary">
-                Lisensi &amp; Atribusi
+                Tentang &amp; Lisensi
               </Link>
             </nav>
 
@@ -159,11 +157,10 @@ export default function HomePage() {
         </header>
 
         <main className="mx-auto max-w-6xl space-y-14 px-8 py-12">
-          {/* Split Hero 7/5 */}
           <section className="grid items-center gap-10 lg:grid-cols-12">
             <div className="space-y-6 lg:col-span-7">
               <Badge tone="warning">
-                KURIKULUM FORMAL JF STANDARD · GRATIS UNTUK PELAJAR INDONESIA
+                GRATIS · UNTUK PELAJAR, MAHASISWA &amp; PERSIAPAN KERJA KE JEPANG
               </Badge>
 
               <h1 className="font-heading text-5xl font-bold leading-[1.12] tracking-tight text-text-primary">
@@ -171,14 +168,14 @@ export default function HomePage() {
               </h1>
 
               <p className="max-w-xl text-base leading-relaxed text-text-secondary">
-                Dilengkapi Tes Penempatan Adaptif 15 soal, Penjelasan Bab (<em>Lesson View</em>)
-                sebelum latihan, kebijakan Lepas Romaji bertahap, Drill Konjugasi, Pelafalan 5–15
-                detik, Hafalan FSRS 2-Tahap, dan Simulasi Ujian N5–N1.
+                Belajar bertahap mengikuti standar pelatihan bahasa Jepang: mulai dari huruf Kana,
+                penjelasan bab, latihan menulis dan pengucapan, hafalan pintar, hingga simulasi
+                ujian N5 sampai N1.
               </p>
 
               <div className="flex flex-wrap items-center gap-3 pt-1">
                 <ButtonLink href="/login?mode=signup" variant="cta" size="lg">
-                  <span>Daftar Gratis &amp; Cek Level Awal</span>
+                  <span>Daftar Gratis &amp; Mulai Belajar</span>
                   <IconArrowRight className="h-4 w-4" />
                 </ButtonLink>
                 <ButtonLink href="/dashboard" variant="outline" size="lg">
@@ -189,23 +186,23 @@ export default function HomePage() {
               <div className="flex flex-wrap items-center gap-5 pt-2 text-xs font-semibold text-text-secondary">
                 <span className="inline-flex items-center gap-1.5">
                   <IconShieldCheck className="h-4 w-4 text-brand-primary" />
-                  <span>0 Token AI / Pelajar</span>
+                  <span>100% Gratis Tanpa Batas Latihan</span>
                 </span>
                 <span className="inline-flex items-center gap-1.5">
                   <IconInfo className="h-4 w-4 text-brand-primary" />
-                  <span>Latihan mandiri non-komersial · Data terbuka berlisensi</span>
+                  <span>Latihan mandiri non-komersial dengan data kamus terbuka</span>
                 </span>
               </div>
             </div>
 
-            {/* Right Interactive-Style FSRS Card Preview */}
+            {/* Pratinjau Kartu Hafalan */}
             <div className="rounded-3xl border border-border-default bg-surface p-6 shadow-sm lg:col-span-5">
               <div className="flex items-center justify-between gap-2">
                 <span className="font-mono text-[11px] font-bold tracking-wide text-brand-primary uppercase">
-                  PRATINJAU KARTU HAFALAN FSRS (RETENSI 90%)
+                  CONTOH KARTU HAFALAN PINTAR
                 </span>
                 <Badge tone="neutral" mono>
-                  Unit 1.3 · N5
+                  N5 · Kosakata
                 </Badge>
               </div>
 
@@ -233,12 +230,11 @@ export default function HomePage() {
               </div>
 
               <p className="mt-3 text-center text-[11px] text-text-secondary">
-                Tahap 1 uji pilihan + jeda 1,5 dtk → Tahap 2 rating FSRS jujur
+                Jadwal ulang otomatis menyesuaikan seberapa mudah kamu mengingatnya
               </p>
             </div>
           </section>
 
-          {/* 4 Formal Curriculum Pillars */}
           <section id="kurikulum" className="grid grid-cols-4 gap-4">
             {DESKTOP_PILLARS.map((pillar) => (
               <div
@@ -258,12 +254,11 @@ export default function HomePage() {
             ))}
           </section>
 
-          {/* 6 Core Studio Modules */}
           <section id="modul" className="space-y-5">
             <div className="flex items-end justify-between gap-4">
               <div>
                 <p className="font-mono text-xs font-bold tracking-wider text-brand-primary uppercase">
-                  EKOSISTEM 4-SKILL BAHASA JEPANG
+                  LATIHAN LENGKAP 4 KETERAMPILAN
                 </p>
                 <h2 className="font-heading mt-1 text-2xl font-bold text-text-primary">
                   6 Modul Inti untuk Membantumu Naik Tingkat Terukur
@@ -273,7 +268,7 @@ export default function HomePage() {
                 href="/about"
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-primary hover:underline"
               >
-                <span>Lihat Lisensi Sumber Data</span>
+                <span>Tentang &amp; Sumber Data</span>
                 <IconArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
@@ -327,9 +322,7 @@ export default function HomePage() {
         </footer>
       </div>
 
-      {/* =================================================================
-          MOBILE COMPANION VIEW (< lg) — Ref: FigCraft M0.1
-         ================================================================= */}
+      {/* MOBILE VIEW (< lg) */}
       <div className="flex min-h-screen flex-col pb-28 lg:hidden">
         <header className="sticky top-0 z-20 flex h-14 items-center justify-between border-b border-border-default bg-surface/95 px-4 backdrop-blur">
           <Link href="/" className="flex items-center gap-2">
@@ -353,24 +346,22 @@ export default function HomePage() {
         </header>
 
         <main className="mx-auto w-full max-w-md flex-1 space-y-4 px-4 pt-4">
-          {/* Mobile Hero Banner */}
           <section className="rounded-3xl bg-[#0F766E] p-5 text-white shadow-sm dark:border dark:border-[#2DD4BF]/25 dark:bg-[#122E2C]">
             <span className="inline-block rounded-full bg-[#115E59] px-3 py-1 font-mono text-[10px] font-bold tracking-wide text-[#CCFBF1] dark:bg-[#0E1418] dark:text-[#2DD4BF]">
-              KURIKULUM FORMAL JLPT N5 → N1
+              KURIKULUM TERARAH JLPT N5 → N1
             </span>
             <h1 className="font-heading mt-3 text-2xl font-bold leading-snug text-white">
               Belajar Bahasa Jepang Terarah dari Nol hingga Siap Ujian
             </h1>
             <p className="mt-2 text-xs leading-relaxed text-[#CCFBF1]">
-              Alur kelas Nihongo Gakkou asli: Kana, FSRS 2-Tahap, Goresan KanjiVG &amp; Mic
-              Adaptif 5–15 detik.
+              Pelajari huruf Kana, kosakata, tata bahasa, menulis goresan, pengucapan suara, hingga
+              simulasi ujian JLPT dalam satu aplikasi.
             </p>
           </section>
 
-          {/* 4-Step Vertical Flow Card */}
           <section className="rounded-2xl border border-border-default bg-surface p-4">
             <p className="font-mono text-[11px] font-bold tracking-wide text-brand-primary uppercase">
-              ALUR BELAJAR 4 LANGKAH (MOBILE-FIRST)
+              ALUR BELAJAR 4 LANGKAH
             </p>
             <div className="mt-3 space-y-3">
               {MOBILE_STEPS.map((s) => (
@@ -395,31 +386,29 @@ export default function HomePage() {
             </div>
           </section>
 
-          {/* 2-Card Trust & Attribution Strip */}
           <section className="grid grid-cols-2 gap-3">
             <div className="rounded-2xl border border-border-default bg-surface p-3.5">
-              <p className="font-mono text-sm font-bold text-brand-primary">0 Token / User</p>
+              <p className="font-heading text-sm font-bold text-brand-primary">100% Gratis</p>
               <p className="mt-1 text-[11px] leading-relaxed text-text-secondary">
-                Bank soal terkurasi &amp; audio native tanpa batas kuota AI.
+                Akses semua materi &amp; latihan harian tanpa batas kuota.
               </p>
             </div>
             <Link
               href="/about"
               className="rounded-2xl border border-border-default bg-surface p-3.5 transition hover:border-brand-accent/50"
             >
-              <p className="font-mono text-sm font-bold text-brand-accent">Lisensi Terbuka</p>
+              <p className="font-heading text-sm font-bold text-brand-accent">Lisensi Terbuka</p>
               <p className="mt-1 text-[11px] leading-relaxed text-text-secondary">
-                JMdict, KanjiVG &amp; Tatoeba (/about →)
+                Lihat atribusi kamus &amp; sumber data →
               </p>
             </Link>
           </section>
         </main>
 
-        {/* Sticky Bottom Thumb CTA */}
         <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border-default bg-surface/95 px-4 pt-3 pb-[calc(0.85rem+env(safe-area-inset-bottom))] backdrop-blur">
           <div className="mx-auto max-w-md space-y-2 text-center">
             <ButtonLink href="/login?mode=signup" variant="cta" size="lg" fullWidth>
-              <span>Daftar Gratis &amp; Cek Level Sekarang</span>
+              <span>Daftar Gratis &amp; Mulai Belajar</span>
               <IconArrowRight className="h-4 w-4" />
             </ButtonLink>
             <p className="text-[10px] text-text-secondary">

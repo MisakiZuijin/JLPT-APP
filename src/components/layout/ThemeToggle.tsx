@@ -17,7 +17,7 @@ export function ThemeToggleCompact() {
             ? "bg-brand-primary text-brand-primary-fg"
             : "text-text-secondary hover:text-text-primary"
         }`}
-        aria-label="Aktifkan Mode Terang (Washi Day)"
+        aria-label="Aktifkan Mode Terang"
       >
         <IconSun className="h-3.5 w-3.5" />
         <span>Terang</span>
@@ -30,7 +30,7 @@ export function ThemeToggleCompact() {
             ? "bg-brand-primary text-brand-primary-fg"
             : "text-text-secondary hover:text-text-primary"
         }`}
-        aria-label="Aktifkan Mode Gelap (Yoru Night)"
+        aria-label="Aktifkan Mode Gelap"
       >
         <IconMoon className="h-3.5 w-3.5" />
         <span>Gelap</span>
@@ -40,9 +40,9 @@ export function ThemeToggleCompact() {
 }
 
 const MODES: { value: ThemeMode; label: string; Icon: typeof IconSun }[] = [
-  { value: "light", label: "Washi Day", Icon: IconSun },
-  { value: "dark", label: "Yoru Night", Icon: IconMoon },
-  { value: "system", label: "Sistem OS", Icon: IconMonitor },
+  { value: "light", label: "Terang", Icon: IconSun },
+  { value: "dark", label: "Gelap", Icon: IconMoon },
+  { value: "system", label: "Sistem", Icon: IconMonitor },
 ];
 
 export function ThemeSelectorSegmented() {

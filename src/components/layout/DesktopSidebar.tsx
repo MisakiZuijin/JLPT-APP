@@ -37,8 +37,8 @@ const SIDEBAR_GROUPS: SidebarGroup[] = [
   {
     title: "Jalur Utama",
     items: [
-      { href: "/dashboard", label: "Beranda · Misi Harian", tab: "beranda", Icon: IconHome },
-      { href: "/review", label: "Hafalan FSRS", tab: "hafal", Icon: IconCards },
+      { href: "/dashboard", label: "Beranda Belajar", tab: "beranda", Icon: IconHome },
+      { href: "/review", label: "Hafalan Kartu", tab: "hafal", Icon: IconCards },
     ],
   },
   {
@@ -46,9 +46,9 @@ const SIDEBAR_GROUPS: SidebarGroup[] = [
     items: [
       { href: "/kana", label: "Tabel Kana", tab: "belajar", Icon: IconBook },
       { href: "/reading", label: "Membaca & Furigana", tab: "belajar", Icon: IconBook },
-      { href: "/writing", label: "Menulis KanjiVG", tab: "belajar", Icon: IconPen },
-      { href: "/pronunciation", label: "Studio Suara (5–15s)", tab: "belajar", Icon: IconMic },
-      { href: "/kaiwa", label: "Kaiwa Roleplay", tab: "belajar", Icon: IconMessage },
+      { href: "/writing", label: "Menulis Goresan", tab: "belajar", Icon: IconPen },
+      { href: "/pronunciation", label: "Latihan Pengucapan", tab: "belajar", Icon: IconMic },
+      { href: "/kaiwa", label: "Percakapan Kaiwa", tab: "belajar", Icon: IconMessage },
       { href: "/culture", label: "Budaya & Etika", tab: "belajar", Icon: IconGlobe },
     ],
   },
@@ -108,10 +108,10 @@ export function DesktopSidebar({
           </span>
           <div className="min-w-0">
             <p className="font-heading truncate text-base font-bold leading-tight text-text-primary">
-              JLPT App · Studio
+              JLPT App
             </p>
             <p className="font-mono text-[11px] font-medium text-brand-primary">
-              Target {targetLevel} · Formal
+              Target Level {targetLevel}
             </p>
           </div>
         </Link>
@@ -174,7 +174,7 @@ export function DesktopSidebar({
               <span>Panel Admin</span>
             </span>
             <span className="rounded-md bg-[#122E2C] px-1.5 py-0.5 font-mono text-[10px] font-bold text-[#2DD4BF]">
-              YORU
+              ADMIN
             </span>
           </Link>
         )}

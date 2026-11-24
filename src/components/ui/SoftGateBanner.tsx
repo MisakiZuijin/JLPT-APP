@@ -10,7 +10,7 @@ type SoftGateBannerProps = {
 };
 
 export function SoftGateBanner({
-  title = "Rekomendasi Urutan Kurikulum Formal (Soft Gate)",
+  title = "Rekomendasi Urutan Belajar",
   description,
   actionHref,
   actionLabel,

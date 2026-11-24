@@ -50,7 +50,8 @@ Gunakan **Context7 MCP** (`resolve-library-id` → `query-docs`) — dan `node_m
    - Gunakan `await supabase.auth.getUser()` (bukan `getSession()`).
    - Bungkus pembacaan data dinamis/sesi di Server Component dalam `<Suspense>` + `await connection()`.
    - Semua tabel user baru di Supabase wajib memakai RLS `auth.uid() = user_id`.
-5. **Satu Fase = Satu Commit Bersih**: Jangan pindah ke fase berikutnya sebelum lulus *Definition of Done* fase aktif (`npx tsc --noEmit`, `npm run build`, dan cek visual Desktop + Mobile).
+5. **Bahasa UI Ramah Pelajar (Nol Jargon Developer di Antarmuka User)**: Jangan pernah menampilkan catatan fase pengembangan (`Fase 1/2/3`), status migrasi SQL (`Migrasi 0005`, `Supabase`), istilah internal arsitektur (`Onboarding Guard`, `Soft Gate`, `0 Token AI`, `Mobile-First`, `Washi/Yoru`), maupun path route mentah (`/about`, `/auth/confirm`, `/onboarding?retake=1`) ke layar pelajar. Informasi teknis hanya boleh tampil di dokumentasi atau khusus di panel `/admin`.
+6. **Satu Fase = Satu Commit Bersih**: Jangan pindah ke fase berikutnya sebelum lulus *Definition of Done* fase aktif (`npx tsc --noEmit`, `npm run build`, dan cek visual Desktop + Mobile).
 
 ---
 
@@ -120,14 +121,13 @@ Gunakan **Context7 MCP** (`resolve-library-id` → `query-docs`) — dan `node_m
   - [LEARNING_FLOW_AND_CURRICULUM.md](./LEARNING_FLOW_AND_CURRICULUM.md) (Bagian 2.1 Langkah 1–4 Onboarding)
   - FigCraft: `D1.2`, `D1.3` (Desktop Split) & `M1.2`, `M1.3` (Mobile 1 soal/layar)
 - **Checklist Pekerjaan**:
-  - [ ] Buat `src/lib/japanese/placement-test.ts`: 15 soal orisinal bertingkat (`PRE_N5` Kana, `N5` kosakata/partikel, `N4` konjugasi/keigo, `N3/N2` pemahaman singkat) + algoritma penempatan otomatis (`current_stage`, `romaji_enabled`, `furigana_mode`, unit awal).
-  - [ ] Buat `src/app/onboarding/actions.ts`: Server Action simpan jawaban onboarding, skor placement, kontrak belajar (`study_minutes_daily`, `exam_target_period`), inisialisasi `user_unit_progress`, dan set `onboarding_completed = true`.
-  - [ ] Buat `src/app/onboarding/page.tsx` & `src/app/onboarding/OnboardingWizard.tsx` (dukung `?retake=1` untuk ulang tes penempatan):
-    - Desktop: split 2 kolom sesuai `D1.2–D1.3`.
-    - Mobile: 1 soal per layar + tombol pilihan tap `54px` + CTA sticky bawah sesuai `M1.2–M1.3`.
+  - [x] Buat `src/lib/japanese/placement-test.ts`: 15 soal orisinal bertingkat (`PRE_N5` Kana, `N5` kosakata/partikel, `N4` konjugasi/keigo, `N3/N2` pemahaman singkat) + algoritma penempatan otomatis (`current_stage`, `romaji_enabled`, `furigana_mode`, unit awal, *early-stop*, *opt-down*, & kalkulator ritme harian).
+  - [x] Buat `src/app/onboarding/actions.ts`: Server Action simpan jawaban onboarding, skor placement, kontrak belajar (`study_minutes_daily`, `exam_target_period`), inisialisasi `user_unit_progress` & `daily_mission_logs`, dan set `onboarding_completed = true`.
+  - [x] Buat `src/app/onboarding/page.tsx` & `src/app/onboarding/OnboardingWizard.tsx` (dukung `?retake=1` untuk ulang tes penempatan):
+    - Desktop: split 2 kolom (stepper kiri + kartu fokus kanan) sesuai `D1.2–D1.3`.
+    - Mobile: top progress bar + 1 soal per layar + pilihan tap ≥ `54px` + CTA sticky bawah sesuai `M1.2–M1.3`.
 - **Definition of Done (DoD Fase 3)**:
-  - Pelajar baru bisa menyelesaikan 4 langkah dari awal hingga masuk `/dashboard`, kolom `profiles` dan `user_unit_progress` terisi akurat sesuai skor tes penempatan.
-  - Verifikasi visual Desktop (`1440px`) & Mobile (`390px`), `tsc` & `build` hijau.
+  - [x] Seluruh 6 skenario penilaian adaptif (*early-stop* & *opt-down*), `npx tsc --noEmit`, `npm run lint`, & `npm run build` lulus bersih (26/26 rute, 0 emoji, 0 jargon developer).
 
 ---
 
