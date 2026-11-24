@@ -2,27 +2,127 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+/* ==========================================================================
+   JLPT App Design System v2 — Seiji Washi (Light) & Yoru Night (Dark)
+   Ref: docs/DESIGN_SYSTEM_V2.md & design/jlpt-app-v2.figcraft (Page 00)
+   ========================================================================== */
+
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --canvas: #f7f6f2;
+  --surface: #ffffff;
+  --subtle: #efece5;
+  --border-default: #e2dfd7;
+
+  --text-primary: #1c252c;
+  --text-secondary: #4b5964;
+
+  --brand-primary: #0f766e;
+  --brand-primary-hover: #115e59;
+  --brand-primary-fg: #ffffff;
+  --brand-primary-soft: #e6f4f1;
+
+  --brand-accent: #d97706;
+  --brand-accent-soft: #fef3c7;
+  --brand-accent-text: #92400e;
+
+  --brand-cta: #c2410c;
+  --brand-cta-hover: #9a3412;
+  --brand-cta-fg: #ffffff;
+
+  --semantic-success: #047857;
+  --semantic-success-soft: #ecfdf5;
+  --semantic-danger: #be123c;
+  --semantic-danger-soft: #fff1f2;
+
+  /* Legacy aliases for smooth incremental migration */
+  --background: var(--canvas);
+  --foreground: var(--text-primary);
 }
 
 .dark {
-  --background: #0b1120;
-  --foreground: #f8fafc;
+  --canvas: #0e1418;
+  --surface: #151e24;
+  --subtle: #1d2830;
+  --border-default: #26333d;
+
+  --text-primary: #f1f5f4;
+  --text-secondary: #9aaab5;
+
+  --brand-primary: #2dd4bf;
+  --brand-primary-hover: #14b8a6;
+  --brand-primary-fg: #0e1418;
+  --brand-primary-soft: #122e2c;
+
+  --brand-accent: #fbbf24;
+  --brand-accent-soft: #33250b;
+  --brand-accent-text: #fde68a;
+
+  --brand-cta: #fb923c;
+  --brand-cta-hover: #f97316;
+  --brand-cta-fg: #0e1418;
+
+  --semantic-success: #34d399;
+  --semantic-success-soft: #0b2b23;
+  --semantic-danger: #fb7185;
+  --semantic-danger-soft: #32121b;
+
+  --background: var(--canvas);
+  --foreground: var(--text-primary);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter), var(--font-noto-jp), system-ui, sans-serif;
-  --font-jp: var(--font-noto-jp), var(--font-inter), system-ui, sans-serif;
+
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-subtle: var(--subtle);
+  --color-border-default: var(--border-default);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-primary-hover: var(--brand-primary-hover);
+  --color-brand-primary-fg: var(--brand-primary-fg);
+  --color-brand-primary-soft: var(--brand-primary-soft);
+
+  --color-brand-accent: var(--brand-accent);
+  --color-brand-accent-soft: var(--brand-accent-soft);
+  --color-brand-accent-text: var(--brand-accent-text);
+
+  --color-brand-cta: var(--brand-cta);
+  --color-brand-cta-hover: var(--brand-cta-hover);
+  --color-brand-cta-fg: var(--brand-cta-fg);
+
+  --color-semantic-success: var(--semantic-success);
+  --color-semantic-success-soft: var(--semantic-success-soft);
+  --color-semantic-danger: var(--semantic-danger);
+  --color-semantic-danger-soft: var(--semantic-danger-soft);
+
+  --font-heading: var(--font-outfit), var(--font-noto-jp), system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), var(--font-noto-jp), system-ui, sans-serif;
+  --font-jp: var(--font-noto-jp), var(--font-dm-sans), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background-color: var(--canvas);
+  color: var(--text-primary);
   font-family: var(--font-sans);
+}
+
+/* Teks Jepang dengan ruang furigana lega */
+.font-jp {
+  font-family: var(--font-jp);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
 }
 
 /* Sembunyikan seluruh scrollbar tanpa menonaktifkan fungsi scroll */
@@ -41,7 +141,7 @@ body::-webkit-scrollbar,
   height: 0;
 }
 
-/* Kursor kuas kaligrafi (fude) untuk kanvas latihan menulis goresan */
+/* Kursor kuas kaligrafi (fude) aksen Seiji Teal untuk kanvas latihan menulis */
 .cursor-brush {
-  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M26.5 3.5L28.5 5.5L13.5 20.5L11.5 18.5Z' fill='%231E293B' stroke='%23FFFFFF' stroke-width='1.4' stroke-linejoin='round'/%3E%3Cpath d='M13.5 20.5L11.5 18.5L9.2 20.8L11.2 22.8Z' fill='%232563EB' stroke='%23FFFFFF' stroke-width='1.2' stroke-linejoin='round'/%3E%3Cpath d='M9.2 20.8C6.6 22 4.6 24.4 3 29C7.6 27.4 10 25.4 11.2 22.8Z' fill='%230F172A' stroke='%23FFFFFF' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E") 3 29, crosshair;
+  cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M26.5 3.5L28.5 5.5L13.5 20.5L11.5 18.5Z' fill='%231C252C' stroke='%23FFFFFF' stroke-width='1.4' stroke-linejoin='round'/%3E%3Cpath d='M13.5 20.5L11.5 18.5L9.2 20.8L11.2 22.8Z' fill='%230F766E' stroke='%23FFFFFF' stroke-width='1.2' stroke-linejoin='round'/%3E%3Cpath d='M9.2 20.8C6.6 22 4.6 24.4 3 29C7.6 27.4 10 25.4 11.2 22.8Z' fill='%231C252C' stroke='%23FFFFFF' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/svg%3E") 3 29, crosshair;
 }

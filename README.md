@@ -4,7 +4,7 @@ Aplikasi belajar bahasa Jepang: membaca, menulis, pengucapan (3–5x pengulangan
 hafalan SRS (FSRS), daily test, dan simulasi ujian JLPT.
 
 📚 **Dokumentasi lengkap & roadmap:** lihat folder [`docs/`](./docs/README.md)
-([PLAN](./docs/PLAN.md) · [LEARNING_FLOW_AND_CURRICULUM](./docs/LEARNING_FLOW_AND_CURRICULUM.md) · [DESIGN_SYSTEM_V2](./docs/DESIGN_SYSTEM_V2.md) · [ARCHITECTURE](./docs/ARCHITECTURE.md) · [FEATURES](./docs/FEATURES.md) · [TOOLS](./docs/TOOLS.md))
+([PLAN](./docs/PLAN.md) · [LEARNING_FLOW_AND_CURRICULUM](./docs/LEARNING_FLOW_AND_CURRICULUM.md) · [DESIGN_SYSTEM_V2](./docs/DESIGN_SYSTEM_V2.md) · [IMPLEMENTATION_PHASES](./docs/IMPLEMENTATION_PHASES.md) · [ARCHITECTURE](./docs/ARCHITECTURE.md) · [FEATURES](./docs/FEATURES.md) · [TOOLS](./docs/TOOLS.md))
 
 ## Tech Stack
 - **Next.js 16** (App Router, TypeScript, Tailwind CSS 4)
