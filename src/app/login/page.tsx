@@ -1,21 +1,48 @@
 "use client";
 
-import { Suspense, useActionState, useState } from "react";
+import { Suspense, useActionState, useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { IconArrowLeft, IconArrowRight } from "@/components/ui/Icons";
-import { login, signup, type AuthState } from "./actions";
+import {
+  login,
+  resendConfirmation,
+  signup,
+  type AuthState,
+  type ResendState,
+} from "./actions";
 
 function AuthCard() {
   const searchParams = useSearchParams();
   const initialMode = searchParams.get("mode") === "signup" ? "signup" : "login";
   const needsSetup = searchParams.get("setup") === "1";
+  const authError = searchParams.get("auth_error");
+  const verified = searchParams.get("verified");
 
   const [mode, setMode] = useState<"login" | "signup">(initialMode);
+  const [showResendOverride, setShowResendOverride] = useState(false);
+
   const [state, action, pending] = useActionState<AuthState, FormData>(
     mode === "login" ? login : signup,
     {}
   );
+  const [resendState, resendAction, resendPending] = useActionState<
+    ResendState,
+    FormData
+  >(resendConfirmation, {});
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && window.location.hash.includes("error=")) {
+      window.history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+      );
+    }
+  }, []);
+
+  const showResend =
+    showResendOverride || Boolean(authError) || Boolean(state.unconfirmedEmail);
 
   return (
     <div className="w-full max-w-md space-y-5">
@@ -84,6 +111,27 @@ function AuthCard() {
           </div>
         )}
 
+        {authError === "otp_expired" && (
+          <div className="mt-4 rounded-xl bg-[#FEE2E2] px-3.5 py-2.5 text-xs font-semibold text-[#991B1B] dark:bg-red-950/60 dark:text-red-200">
+            Tautan verifikasi email sudah kedaluwarsa atau sudah pernah dibuka. Kirim ulang tautan
+            verifikasi baru melalui formulir di bawah.
+          </div>
+        )}
+
+        {authError && authError !== "otp_expired" && (
+          <div className="mt-4 rounded-xl bg-[#FEE2E2] px-3.5 py-2.5 text-xs font-semibold text-[#991B1B] dark:bg-red-950/60 dark:text-red-200">
+            Verifikasi email gagal diproses. Silakan kirim ulang tautan verifikasi baru melalui
+            formulir di bawah.
+          </div>
+        )}
+
+        {verified === "cross_device" && (
+          <div className="mt-4 rounded-xl bg-[#D1FAE5] px-3.5 py-2.5 text-xs font-semibold text-[#065F46] dark:bg-emerald-950/60 dark:text-emerald-200">
+            Email berhasil terverifikasi! Karena tautan dibuka di browser atau perangkat berbeda,
+            silakan masuk menggunakan email dan kata sandi kamu.
+          </div>
+        )}
+
         <form action={action} className="mt-5 space-y-3.5">
           {mode === "signup" && (
             <label className="block text-xs font-semibold text-slate-700 dark:text-slate-300">
@@ -146,6 +194,59 @@ function AuthCard() {
             {!pending && <IconArrowRight className="h-4 w-4" />}
           </button>
         </form>
+
+        <div className="mt-5 border-t border-slate-200 pt-4 dark:border-slate-800">
+          {!showResend ? (
+            <button
+              type="button"
+              onClick={() => setShowResendOverride(true)}
+              className="w-full text-center text-xs font-semibold text-[#2563EB] hover:underline dark:text-blue-400"
+            >
+              Belum menerima email verifikasi? Kirim ulang
+            </button>
+          ) : (
+            <form action={resendAction} className="space-y-3">
+              <div>
+                <p className="text-xs font-bold text-slate-700 dark:text-slate-200">
+                  Kirim Ulang Tautan Verifikasi
+                </p>
+                <p className="mt-0.5 text-[11px] text-slate-500 dark:text-slate-400">
+                  Masukkan email yang kamu daftarkan untuk mengirim tautan verifikasi baru.
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <input
+                  key={state.unconfirmedEmail ?? "resend"}
+                  name="email"
+                  type="email"
+                  required
+                  defaultValue={state.unconfirmedEmail ?? ""}
+                  placeholder="nama@email.com"
+                  className="w-full rounded-xl border border-slate-200 bg-[#F1F5F9] px-3.5 py-2.5 text-sm text-[#0F172A] outline-none focus:border-[#2563EB] dark:border-slate-700 dark:bg-[#1E293B] dark:text-[#F8FAFC]"
+                />
+                <button
+                  type="submit"
+                  disabled={resendPending}
+                  className="shrink-0 rounded-xl bg-[#0F172A] px-4 py-2.5 text-xs font-bold text-white transition hover:bg-slate-800 disabled:opacity-60 dark:bg-[#1E293B] dark:hover:bg-slate-700"
+                >
+                  {resendPending ? "Mengirim..." : "Kirim Ulang"}
+                </button>
+              </div>
+
+              {resendState.error && (
+                <p className="rounded-xl bg-[#FEE2E2] px-3.5 py-2 text-xs font-semibold text-[#991B1B] dark:bg-red-950/60 dark:text-red-200">
+                  {resendState.error}
+                </p>
+              )}
+              {resendState.message && (
+                <p className="rounded-xl bg-[#D1FAE5] px-3.5 py-2 text-xs font-semibold text-[#065F46] dark:bg-emerald-950/60 dark:text-emerald-200">
+                  {resendState.message}
+                </p>
+              )}
+            </form>
+          )}
+        </div>
       </div>
 
       <p className="text-center text-xs text-slate-500 dark:text-slate-400">

@@ -41,6 +41,28 @@ export async function proxy(request: NextRequest) {
     return response;
   }
 
+  const path = request.nextUrl.pathname;
+  const sp = request.nextUrl.searchParams;
+
+  if (
+    path === "/" &&
+    (sp.has("code") ||
+      (sp.has("token_hash") && sp.has("type")) ||
+      sp.has("error") ||
+      sp.has("error_code"))
+  ) {
+    const url = request.nextUrl.clone();
+    url.pathname = "/auth/confirm";
+    const redirectRes = NextResponse.redirect(url);
+    redirectRes.headers.set("Cache-Control", "private, no-store");
+    return redirectRes;
+  }
+
+  if (path.startsWith("/auth/")) {
+    response.headers.set("Cache-Control", "private, no-store");
+    return response;
+  }
+
   let updatedCookies: CookieToSet[] = [];
 
   const supabase = createServerClient(
@@ -70,7 +92,6 @@ export async function proxy(request: NextRequest) {
   const isLoggedIn = Boolean(user);
   const isAdmin = user?.app_metadata?.role === "admin";
 
-  const path = request.nextUrl.pathname;
   const isProtected = PROTECTED.some(
     (p) => path === p || path.startsWith(`${p}/`),
   );
