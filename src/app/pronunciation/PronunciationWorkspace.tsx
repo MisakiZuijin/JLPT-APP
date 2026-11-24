@@ -132,9 +132,9 @@ export function PronunciationWorkspace({
         </span>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[290px_1fr]">
+      <div className="grid gap-6 lg:grid-cols-[290px_minmax(0,1fr)]">
         {/* Daftar Frasa */}
-        <aside className="h-fit space-y-2 rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-[#111827]">
+        <aside className="min-w-0 h-fit space-y-2 rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-[#111827]">
           <p className="px-1 text-xs font-bold tracking-wider text-slate-400 uppercase">
             Daftar Kalimat ({phrases.length})
           </p>
@@ -180,7 +180,7 @@ export function PronunciationWorkspace({
         </aside>
 
         {/* Studio Pengucapan */}
-        <section className="space-y-5 rounded-3xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-[#111827] sm:p-7">
+        <section className="min-w-0 space-y-5 rounded-3xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-[#111827] sm:p-7">
           {/* Indikator Pengulangan 1..5 */}
           <div className="flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-1.5">

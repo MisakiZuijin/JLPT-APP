@@ -225,11 +225,11 @@ export function AdminWorkspace({
       <div className="flex min-w-0 flex-1 flex-col">
         {/* Mobile Header */}
         <header className="sticky top-0 z-20 flex items-center justify-between border-b border-slate-200 bg-white/95 px-4 py-3 backdrop-blur md:hidden dark:border-slate-800 dark:bg-[#111827]/95">
-          <div className="flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#0F172A] font-jp text-sm font-bold text-white dark:bg-[#2563EB]">
+          <div className="flex min-w-0 items-center gap-2">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#0F172A] font-jp text-sm font-bold text-white dark:bg-[#2563EB]">
               管
             </span>
-            <span className="text-sm font-bold">JLPT Admin</span>
+            <span className="truncate text-sm font-bold">JLPT Admin</span>
           </div>
           <div className="flex items-center gap-2">
             <Link

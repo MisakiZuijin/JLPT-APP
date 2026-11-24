@@ -333,9 +333,9 @@ export function ExamSession({ spec }: { spec: MockExamSpec }) {
         </div>
       </header>
 
-      <div className="grid gap-6 lg:grid-cols-[1fr_280px]">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_280px]">
         {/* Soal Aktif */}
-        <section className="space-y-5 rounded-3xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-[#111827] sm:p-8">
+        <section className="min-w-0 space-y-5 rounded-3xl border border-slate-200 bg-white p-6 dark:border-slate-800 dark:bg-[#111827] sm:p-8">
           <div className="flex items-center justify-between gap-2">
             <span className="text-xs font-bold text-slate-500 dark:text-slate-400">
               Soal {questionIdx + 1} dari {currentSection.questions.length}

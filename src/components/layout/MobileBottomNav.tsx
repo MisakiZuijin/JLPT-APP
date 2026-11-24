@@ -40,17 +40,17 @@ export function MobileTopBar({
   const isSettingsActive = pathname === "/settings" || activeTab === "pengaturan";
 
   return (
-    <header className="sticky top-0 z-20 flex h-14 items-center justify-between border-b border-border-default bg-surface/95 px-4 backdrop-blur lg:hidden">
-      <Link href="/dashboard" className="flex items-center gap-2.5">
-        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-primary font-jp text-sm font-bold text-brand-primary-fg">
+    <header className="sticky top-0 z-20 flex h-14 items-center justify-between gap-2 border-b border-border-default bg-surface/95 px-4 backdrop-blur sm:px-6 lg:hidden">
+      <Link href="/dashboard" className="flex min-w-0 items-center gap-2.5">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-primary font-jp text-sm font-bold text-brand-primary-fg">
           道
         </span>
-        <span className="font-heading text-sm font-bold tracking-tight text-text-primary">
+        <span className="font-heading truncate text-sm font-bold tracking-tight text-text-primary">
           JLPT App
         </span>
       </Link>
 
-      <div className="flex items-center gap-2">
+      <div className="flex shrink-0 items-center gap-2">
         {isAdmin && (
           <Link
             href="/admin"

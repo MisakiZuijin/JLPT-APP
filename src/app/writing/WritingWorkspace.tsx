@@ -98,9 +98,9 @@ export function WritingWorkspace({
         ))}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[260px_1fr]">
+      <div className="grid gap-6 lg:grid-cols-[260px_minmax(0,1fr)]">
         {/* Daftar Karakter */}
-        <aside className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-[#111827] h-fit">
+        <aside className="min-w-0 rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-[#111827] h-fit">
           <p className="mb-3 text-xs font-bold tracking-wider text-slate-400 uppercase">
             Pilih Huruf ({visibleChars.length})
           </p>
@@ -138,7 +138,7 @@ export function WritingWorkspace({
         </aside>
 
         {/* Area Kanvas Utama */}
-        <section className="rounded-3xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-[#111827] sm:p-7 space-y-5">
+        <section className="min-w-0 rounded-3xl border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-[#111827] sm:p-7 space-y-5">
           <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 pb-4 dark:border-slate-800">
             <div className="flex items-center gap-4">
               <span className="font-jp flex h-16 w-16 items-center justify-center rounded-2xl bg-[#0F172A] text-4xl font-extrabold text-white dark:bg-[#2563EB]">

@@ -3,7 +3,7 @@
 import { Suspense, useActionState, useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { ThemeToggleCompact } from "@/components/layout/ThemeToggle";
+import { ThemeToggleCompact, ThemeToggleIcon } from "@/components/layout/ThemeToggle";
 import { Badge } from "@/components/ui/Badge";
 import {
   IconArrowLeft,
@@ -59,26 +59,26 @@ function AuthCard() {
     showResendOverride || Boolean(authError) || Boolean(state.unconfirmedEmail);
 
   return (
-    <div className="mx-auto grid w-full max-w-5xl items-center gap-8 lg:grid-cols-12">
+    <div className="mx-auto grid w-full max-w-5xl items-stretch gap-6 lg:grid-cols-12 lg:gap-8">
       {/* Panel kiri khusus Desktop */}
-      <aside className="hidden flex-col justify-between rounded-3xl bg-[#0F766E] p-8 text-white shadow-sm lg:col-span-6 lg:flex lg:min-h-[590px] dark:border dark:border-[#2DD4BF]/20 dark:bg-[#122E2C]">
+      <aside className="hidden flex-col justify-between rounded-3xl bg-[#0F766E] p-7 text-white shadow-sm lg:col-span-6 lg:flex xl:p-8 dark:border dark:border-[#2DD4BF]/20 dark:bg-[#122E2C]">
         <div className="space-y-6">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 font-jp text-lg font-bold text-white">
+          <div className="flex items-center justify-between gap-3">
+            <Link href="/" className="flex min-w-0 items-center gap-3">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/15 font-jp text-lg font-bold text-white">
                 道
               </span>
-              <div>
-                <p className="font-heading text-base font-bold leading-none text-white">
+              <div className="min-w-0">
+                <p className="font-heading truncate text-base font-bold leading-none text-white">
                   JLPT App
                 </p>
-                <p className="mt-1 font-mono text-[11px] text-[#CCFBF1]">
+                <p className="mt-1 truncate font-mono text-[11px] text-[#CCFBF1]">
                   Kurikulum Bahasa Jepang N5–N1
                 </p>
               </div>
             </Link>
 
-            <span className="rounded-full bg-[#115E59] px-3 py-1 font-mono text-[11px] font-bold text-[#CCFBF1] dark:bg-[#0E1418] dark:text-[#2DD4BF]">
+            <span className="shrink-0 rounded-full bg-[#115E59] px-3 py-1 font-mono text-[11px] font-bold whitespace-nowrap text-[#CCFBF1] dark:bg-[#0E1418] dark:text-[#2DD4BF]">
               100% Gratis
             </span>
           </div>
@@ -123,29 +123,34 @@ function AuthCard() {
       </aside>
 
       {/* Kartu Login / Daftar */}
-      <section className="mx-auto w-full max-w-md space-y-4 lg:col-span-6 lg:max-w-none">
-        <div className="flex items-center justify-between">
+      <section className="mx-auto flex w-full min-w-0 max-w-md flex-col justify-between gap-4 lg:col-span-6 lg:max-w-none">
+        <div className="flex items-center justify-between gap-2">
           <Link
             href="/"
-            className="inline-flex min-h-9 items-center gap-1.5 rounded-full border border-border-default bg-surface px-3.5 py-1.5 text-xs font-bold text-text-primary transition hover:bg-subtle"
+            className="inline-flex min-h-9 shrink-0 items-center gap-1.5 rounded-full border border-border-default bg-surface px-3.5 py-1.5 text-xs font-bold text-text-primary transition hover:bg-subtle"
           >
-            <IconArrowLeft className="h-3.5 w-3.5" />
+            <IconArrowLeft className="h-3.5 w-3.5 shrink-0" />
             <span>Beranda</span>
           </Link>
-          <ThemeToggleCompact />
+          <span className="hidden sm:inline-flex">
+            <ThemeToggleCompact />
+          </span>
+          <span className="sm:hidden">
+            <ThemeToggleIcon />
+          </span>
         </div>
 
-        <div className="rounded-3xl border border-border-default bg-surface p-6 shadow-sm sm:p-8">
+        <div className="min-w-0 flex-1 rounded-3xl border border-border-default bg-surface p-5 shadow-sm sm:p-8">
           <div className="mb-5 flex items-center justify-between gap-3">
-            <div className="flex items-center gap-2.5">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-primary font-jp text-base font-bold text-brand-primary-fg">
+            <div className="flex min-w-0 items-center gap-2.5">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-brand-primary font-jp text-base font-bold text-brand-primary-fg">
                 道
               </span>
-              <div>
-                <p className="font-heading text-base font-bold leading-tight text-text-primary">
+              <div className="min-w-0">
+                <p className="font-heading truncate text-base font-bold leading-tight text-text-primary">
                   JLPT App
                 </p>
-                <p className="text-xs text-text-secondary">
+                <p className="truncate text-xs text-text-secondary">
                   Mulai belajar bahasa Jepang terarah
                 </p>
               </div>

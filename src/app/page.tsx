@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ThemeToggleCompact } from "@/components/layout/ThemeToggle";
+import { ThemeToggleCompact, ThemeToggleIcon } from "@/components/layout/ThemeToggle";
 import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
 import {
@@ -235,7 +235,7 @@ export default function HomePage() {
             </div>
           </section>
 
-          <section id="kurikulum" className="grid grid-cols-4 gap-4">
+          <section id="kurikulum" className="grid grid-cols-2 gap-4 xl:grid-cols-4">
             {DESKTOP_PILLARS.map((pillar) => (
               <div
                 key={pillar.eyebrow}
@@ -273,7 +273,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 gap-4 xl:grid-cols-3">
               {CORE_MODULES.map(({ tag, title, desc, Icon }) => (
                 <div
                   key={tag}
@@ -322,11 +322,11 @@ export default function HomePage() {
         </footer>
       </div>
 
-      {/* MOBILE VIEW (< lg) */}
+      {/* MOBILE & TABLET VIEW (< lg) */}
       <div className="flex min-h-screen flex-col pb-28 lg:hidden">
-        <header className="sticky top-0 z-20 flex h-14 items-center justify-between border-b border-border-default bg-surface/95 px-4 backdrop-blur">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-primary font-jp text-sm font-bold text-brand-primary-fg">
+        <header className="sticky top-0 z-20 flex h-14 items-center justify-between border-b border-border-default bg-surface/95 px-4 backdrop-blur sm:px-6">
+          <Link href="/" className="flex shrink-0 items-center gap-2">
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-primary font-jp text-sm font-bold text-brand-primary-fg">
               道
             </span>
             <span className="font-heading text-base font-bold tracking-tight text-text-primary">
@@ -334,8 +334,13 @@ export default function HomePage() {
             </span>
           </Link>
 
-          <div className="flex items-center gap-2">
-            <ThemeToggleCompact />
+          <div className="flex shrink-0 items-center gap-2">
+            <span className="hidden sm:inline-flex">
+              <ThemeToggleCompact />
+            </span>
+            <span className="sm:hidden">
+              <ThemeToggleIcon />
+            </span>
             <Link
               href="/login"
               className="inline-flex min-h-9 items-center rounded-full bg-subtle px-3.5 text-xs font-bold text-text-primary"
@@ -345,7 +350,7 @@ export default function HomePage() {
           </div>
         </header>
 
-        <main className="mx-auto w-full max-w-md flex-1 space-y-4 px-4 pt-4">
+        <main className="mx-auto w-full max-w-xl flex-1 space-y-4 px-4 pt-5 sm:px-6">
           <section className="rounded-3xl bg-[#0F766E] p-5 text-white shadow-sm dark:border dark:border-[#2DD4BF]/25 dark:bg-[#122E2C]">
             <span className="inline-block rounded-full bg-[#115E59] px-3 py-1 font-mono text-[10px] font-bold tracking-wide text-[#CCFBF1] dark:bg-[#0E1418] dark:text-[#2DD4BF]">
               KURIKULUM TERARAH JLPT N5 → N1
@@ -405,8 +410,8 @@ export default function HomePage() {
           </section>
         </main>
 
-        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border-default bg-surface/95 px-4 pt-3 pb-[calc(0.85rem+env(safe-area-inset-bottom))] backdrop-blur">
-          <div className="mx-auto max-w-md space-y-2 text-center">
+        <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border-default bg-surface/95 px-4 pt-3 pb-[calc(0.85rem+env(safe-area-inset-bottom))] backdrop-blur sm:px-6">
+          <div className="mx-auto max-w-xl space-y-2 text-center">
             <ButtonLink href="/login?mode=signup" variant="cta" size="lg" fullWidth>
               <span>Daftar Gratis &amp; Mulai Belajar</span>
               <IconArrowRight className="h-4 w-4" />

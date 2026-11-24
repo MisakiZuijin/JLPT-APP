@@ -23,7 +23,7 @@ export function StudySubNav({ active }: { active: StudyTab }) {
           <Link
             key={key}
             href={href}
-            className={`inline-flex min-h-10 items-center justify-center gap-1.5 rounded-xl px-3 py-2 text-xs font-bold transition sm:px-4 ${
+            className={`inline-flex min-h-10 min-w-0 items-center justify-center gap-1.5 rounded-xl px-2 py-2 text-xs font-bold transition sm:px-4 ${
               isCurrent
                 ? "bg-brand-primary text-brand-primary-fg"
                 : "text-text-secondary hover:bg-subtle hover:text-text-primary"

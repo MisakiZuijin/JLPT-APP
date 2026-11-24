@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ThemeToggleCompact } from "@/components/layout/ThemeToggle";
+import { ThemeToggleCompact, ThemeToggleIcon } from "@/components/layout/ThemeToggle";
 import { Badge } from "@/components/ui/Badge";
 import { ButtonLink } from "@/components/ui/Button";
 import {
@@ -75,7 +75,7 @@ export default function AboutPage() {
           </Link>
 
           <div className="hidden items-center gap-2 sm:flex">
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-brand-primary font-jp text-xs font-bold text-brand-primary-fg">
+            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-brand-primary font-jp text-xs font-bold text-brand-primary-fg">
               道
             </span>
             <span className="font-heading text-sm font-bold text-text-primary">
@@ -83,7 +83,12 @@ export default function AboutPage() {
             </span>
           </div>
 
-          <ThemeToggleCompact />
+          <span className="hidden sm:inline-flex">
+            <ThemeToggleCompact />
+          </span>
+          <span className="sm:hidden">
+            <ThemeToggleIcon />
+          </span>
         </div>
       </header>
 

@@ -247,9 +247,9 @@ export function KanaBoard() {
       </div>
 
       {/* Main layout: Grid + Dark Detail Panel */}
-      <div className="grid gap-6 lg:grid-cols-[1fr_340px]">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_340px]">
         {/* Kana Matrix */}
-        <section className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-[#111827] sm:p-5">
+        <section className="min-w-0 rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-800 dark:bg-[#111827] sm:p-5">
           <div className="space-y-2">
             {activeRows.map((row, rowIndex) => (
               <div
