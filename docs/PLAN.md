@@ -37,6 +37,9 @@ flowchart LR
   G -- Belum --> C
 ```
 
+> [!NOTE]
+> Rincian formal **alur sistem (register, verifikasi email, onboarding wajib 4 langkah, tes penempatan, routing login)**, **silabus pendidikan bahasa Jepang berbasis JF Standard / CEFR / JLPT N5–N1**, serta **siklus belajar harian terarah** terdokumentasi lengkap pada [LEARNING_FLOW_AND_CURRICULUM.md](./LEARNING_FLOW_AND_CURRICULUM.md).
+
 ## 5. Roadmap
 
 ### ✅ Fase 1 — Fondasi (SELESAI)

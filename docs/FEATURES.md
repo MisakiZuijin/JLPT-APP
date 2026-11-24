@@ -36,6 +36,7 @@ stateDiagram-v2
 - Skor = kemiripan (Levenshtein) transkrip vs target, dalam bentuk hiragana.
 - Setiap percobaan disimpan di `pronunciation_attempts`.
 - Item yang gagal 5x otomatis masuk antrean latihan ulang besok.
+- **Rencana Pembaruan Durasi Rekam Adaptif (`useSpeechPractice.ts`)**: durasi otomatis **5 detik** untuk teks pendek (`≤ 12` kana), **10 detik** untuk teks sedang (`13–24` kana), dan **15 detik** untuk teks panjang (`≥ 25` kana / dialog *Kaiwa*), dengan mode `continuous`, **countdown timer & progress bar**, **auto-stop + penilaian otomatis**, serta tombol henti lebih cepat.
 
 ## 5. 📅 Daily Test — *Fase 4*
 - Dibuat otomatis tiap hari (cron) per user, 1 tes/hari (`daily_tests`).
