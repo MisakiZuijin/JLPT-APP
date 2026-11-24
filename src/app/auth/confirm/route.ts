@@ -1,6 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import type { EmailOtpType } from "@supabase/supabase-js";
 import { NextResponse, type NextRequest } from "next/server";
+import { getOnboardingStatus } from "@/lib/onboarding-guard";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 
 type CookieToSet = {
@@ -107,10 +108,15 @@ export async function GET(request: NextRequest) {
     const cookiesToApply = [...cookieMap.values()];
 
     if (!error) {
-      const targetPath =
-        next === "/dashboard" && data.user?.app_metadata?.role === "admin"
-          ? "/admin"
-          : next;
+      let targetPath = next;
+      if (data.user?.app_metadata?.role === "admin") {
+        targetPath = next === "/dashboard" ? "/admin" : next;
+      } else if (data.user) {
+        const { schemaReady, completed } = await getOnboardingStatus(supabase, data.user.id);
+        if (schemaReady && !completed) {
+          targetPath = "/onboarding";
+        }
+      }
       return redirectWithCookies(new URL(targetPath, origin), cookiesToApply);
     }
 
@@ -129,10 +135,15 @@ export async function GET(request: NextRequest) {
     const cookiesToApply = [...cookieMap.values()];
 
     if (!error) {
-      const targetPath =
-        next === "/dashboard" && data.user?.app_metadata?.role === "admin"
-          ? "/admin"
-          : next;
+      let targetPath = next;
+      if (data.user?.app_metadata?.role === "admin") {
+        targetPath = next === "/dashboard" ? "/admin" : next;
+      } else if (data.user) {
+        const { schemaReady, completed } = await getOnboardingStatus(supabase, data.user.id);
+        if (schemaReady && !completed) {
+          targetPath = "/onboarding";
+        }
+      }
       return redirectWithCookies(new URL(targetPath, origin), cookiesToApply);
     }
 

@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { getOnboardingStatus } from "@/lib/onboarding-guard";
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { getEmailRedirectUrl } from "@/lib/supabase/site-url";
@@ -45,6 +46,13 @@ export async function login(_: AuthState, formData: FormData): Promise<AuthState
   if (data.user?.app_metadata?.role === "admin") {
     redirect("/admin");
   }
+
+  if (data.user) {
+    const { schemaReady, completed } = await getOnboardingStatus(supabase, data.user.id);
+    if (schemaReady && !completed) {
+      redirect("/onboarding");
+    }
+  }
   redirect("/dashboard");
 }
 
@@ -82,6 +90,13 @@ export async function signup(_: AuthState, formData: FormData): Promise<AuthStat
       message:
         "Tautan verifikasi sudah dikirim ke email kamu. Cek kotak masuk (atau folder Spam), lalu klik tautannya untuk masuk.",
     };
+  }
+
+  if (data.user) {
+    const { schemaReady, completed } = await getOnboardingStatus(supabase, data.user.id);
+    if (schemaReady && !completed) {
+      redirect("/onboarding");
+    }
   }
   redirect("/dashboard");
 }

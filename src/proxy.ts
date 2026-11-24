@@ -1,9 +1,12 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
+import { getOnboardingStatus } from "@/lib/onboarding-guard";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 
 const PROTECTED = [
   "/admin",
+  "/onboarding",
+  "/roadmap",
   "/dashboard",
   "/review",
   "/kana",
@@ -31,6 +34,7 @@ function redirectWithCookies(url: URL, cookiesToApply: CookieToSet[]) {
   for (const { name, value, options } of cookiesToApply) {
     redirectRes.cookies.set(name, value, options);
   }
+  redirectRes.headers.set("Cache-Control", "private, no-store");
   return redirectRes;
 }
 
@@ -44,6 +48,7 @@ export async function proxy(request: NextRequest) {
   const path = request.nextUrl.pathname;
   const sp = request.nextUrl.searchParams;
 
+  // Tangkap fallback link verifikasi Supabase yang mengarah ke root "/"
   if (
     path === "/" &&
     (sp.has("code") ||
@@ -78,11 +83,11 @@ export async function proxy(request: NextRequest) {
           cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value));
           response = NextResponse.next({ request });
           cookiesToSet.forEach(({ name, value, options }) =>
-            response.cookies.set(name, value, options)
+            response.cookies.set(name, value, options),
           );
         },
       },
-    }
+    },
   );
 
   // Gunakan getUser() agar status sesi di proxy identik 100% dengan requireShellContext()
@@ -95,7 +100,10 @@ export async function proxy(request: NextRequest) {
   const isProtected = PROTECTED.some(
     (p) => path === p || path.startsWith(`${p}/`),
   );
+  const isOnboardingPath = path === "/onboarding" || path.startsWith("/onboarding/");
+  const isAdminPath = path === "/admin" || path.startsWith("/admin/");
 
+  // 1. Belum login mengakses halaman terlindungi -> wajib ke /login
   if (!isLoggedIn && isProtected) {
     const url = request.nextUrl.clone();
     url.pathname = "/login";
@@ -103,18 +111,51 @@ export async function proxy(request: NextRequest) {
     return redirectWithCookies(url, updatedCookies);
   }
 
-  if (isLoggedIn && (path === "/admin" || path.startsWith("/admin/")) && !isAdmin) {
-    const url = request.nextUrl.clone();
-    url.pathname = "/dashboard";
-    url.search = "";
-    return redirectWithCookies(url, updatedCookies);
+  // 2. Sudah login sebagai Admin -> isolasi ke /admin dari /login; tidak dipaksa onboarding
+  if (isLoggedIn && isAdmin) {
+    if (path === "/login") {
+      const url = request.nextUrl.clone();
+      url.pathname = "/admin";
+      url.search = "";
+      return redirectWithCookies(url, updatedCookies);
+    }
+
+    response.headers.set("Cache-Control", "private, no-store");
+    return response;
   }
 
-  if (isLoggedIn && path === "/login") {
-    const url = request.nextUrl.clone();
-    url.pathname = isAdmin ? "/admin" : "/dashboard";
-    url.search = "";
-    return redirectWithCookies(url, updatedCookies);
+  // 3. Sudah login sebagai Pelajar -> cek status onboarding untuk /login & rute terlindungi
+  if (isLoggedIn && user && (path === "/login" || isProtected)) {
+    const { schemaReady, completed } = await getOnboardingStatus(supabase, user.id);
+    const needsOnboarding = schemaReady && !completed;
+
+    // Pelajar belum selesai onboarding -> arahkan wajib ke /onboarding
+    if (needsOnboarding) {
+      if (!isOnboardingPath) {
+        const url = request.nextUrl.clone();
+        url.pathname = "/onboarding";
+        url.search = "";
+        return redirectWithCookies(url, updatedCookies);
+      }
+
+      response.headers.set("Cache-Control", "private, no-store");
+      return response;
+    }
+
+    // Pelajar sudah selesai onboarding -> blokir /admin, /login, & /onboarding (kecuali ?retake=1)
+    if (isAdminPath || path === "/login") {
+      const url = request.nextUrl.clone();
+      url.pathname = "/dashboard";
+      url.search = "";
+      return redirectWithCookies(url, updatedCookies);
+    }
+
+    if (isOnboardingPath && sp.get("retake") !== "1") {
+      const url = request.nextUrl.clone();
+      url.pathname = "/dashboard";
+      url.search = "";
+      return redirectWithCookies(url, updatedCookies);
+    }
   }
 
   response.headers.set("Cache-Control", "private, no-store");
@@ -122,5 +163,7 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp3|wav)$).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|mp3|wav)$).*)",
+  ],
 };

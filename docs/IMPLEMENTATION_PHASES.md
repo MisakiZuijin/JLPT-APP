@@ -98,18 +98,18 @@ Gunakan **Context7 MCP** (`resolve-library-id` → `query-docs`) — dan `node_m
   - [src/proxy.ts](../src/proxy.ts), [src/lib/auth-profile.ts](../src/lib/auth-profile.ts), [src/lib/types.ts](../src/lib/types.ts), dan [supabase/migrations/0001_init.sql](../supabase/migrations/0001_init.sql)
   - Context7: Supabase SSR & Postgres RLS policies
 - **Checklist Pekerjaan**:
-  - [ ] Buat `supabase/migrations/0005_onboarding_curriculum.sql`:
+  - [x] Buat `supabase/migrations/0005_onboarding_curriculum.sql`:
     - Tambah kolom di `public.profiles`: `onboarding_completed`, `learning_goal`, `current_stage`, `study_minutes_daily`, `exam_target_period`, `placement_score`, `romaji_enabled`, `furigana_mode`.
     - Perbarui trigger `public.handle_new_user()` agar menyalin `display_name` dari `raw_user_meta_data`.
     - Tambah kolom `unit_code` + index pada `public.items`.
     - Buat tabel baru dengan RLS penuh (`auth.uid() = user_id`): `public.curriculum_units`, `public.user_unit_progress`, `public.daily_mission_logs`.
-    - Seed definisi unit awal (`0.1–0.3`, `1.1–1.8`, `2.1–2.6`, dst.) di `public.curriculum_units`.
-  - [ ] Perbarui [src/lib/types.ts](../src/lib/types.ts) & [src/lib/auth-profile.ts](../src/lib/auth-profile.ts) agar menyertakan field profil baru + helper cek `onboarding_completed`.
-  - [ ] Perbarui [src/proxy.ts](../src/proxy.ts) dan `requireShellContext()` sesuai Matriks Routing Bagian 2.2 (pelajar yang `onboarding_completed = false` diarahkan wajib ke `/onboarding`; admin tidak dipaksa onboarding dan tetap terisolasi di `/admin`).
-  - [ ] Jalankan migrasi `0005_onboarding_curriculum.sql` di Supabase (serta pastikan akun eksisting tetap aman / tidak terjebak loop redirect).
+    - Seed definisi 30 unit awal (`0.1–0.3`, `1.1–1.8`, `2.1–2.6`, `3.1–3.5`, `4.1–4.4`, `5.1–5.4`) di `public.curriculum_units`.
+  - [x] Perbarui [src/lib/types.ts](../src/lib/types.ts), [src/lib/onboarding-guard.ts](../src/lib/onboarding-guard.ts), & [src/lib/auth-profile.ts](../src/lib/auth-profile.ts) agar menyertakan field profil baru + helper cek `onboarding_completed` dengan fallback aman pre-migrasi.
+  - [x] Perbarui [src/proxy.ts](../src/proxy.ts), [src/app/auth/confirm/route.ts](../src/app/auth/confirm/route.ts), [src/app/login/actions.ts](../src/app/login/actions.ts), dan `requireShellContext()` sesuai Matriks Routing Bagian 2.2 (plus halaman jembatan `/onboarding` agar akun baru tidak 404 sebelum Fase 3).
+  - [ ] *(Tindakan Manual di Supabase Dashboard)* Jalankan `supabase/migrations/0005_onboarding_curriculum.sql` di **Supabase SQL Editor** untuk mengaktifkan kolom & tabel baru di database live.
 - **Definition of Done (DoD Fase 2)**:
-  - `npx tsc --noEmit` & `npm run build` lulus.
-  - Uji skenario routing: (1) Belum login → `/login`, (2) Pelajar baru `onboarding_completed=false` akses `/dashboard` → redirect `/onboarding`, (3) Admin login → langsung `/admin` tanpa dipaksa onboarding.
+  - [x] `npx tsc --noEmit`, `npm run lint`, & `npm run build` lulus (26/26 rute).
+  - [x] Uji skenario routing belum login (`/onboarding`, `/roadmap`, `/dashboard` → `/login?next=...`; `/about` publik 200) lulus tanpa loop & 0 console error. *(Uji akun login `onboarding_completed=false` aktif otomatis segera setelah SQL `0005` dijalankan di Supabase.)*
 
 ---
 
